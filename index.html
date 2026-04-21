@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn HTML basics — All Tags, Syntax, Examples & Output">
+  <meta name="keywords" content="HTML, web, tutorial">
+  <meta name="author" content="HTML Guide">
+  <title>HTML Complete Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface2: #1a1a25;
+      --border: #2a2a3a;
+      --accent: #ff6b35;
+      --accent2: #4ecdc4;
+      --accent3: #ffe66d;
+      --text: #e8e8f0;
+      --text-muted: #7a7a9a;
+      --code-bg: #0d1117;
+      --html-orange: #e34c26;
+      --html-blue: #264de4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Syne', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, #1a0a3a 0%, var(--bg) 70%);
+      overflow: hidden;
+      padding: 2rem;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,107,53,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,107,53,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridPulse 8s ease-in-out infinite;
+    }
+
+    @keyframes gridPulse {
+      0%,100%{ opacity:.4 } 50%{ opacity:1 }
+    }
+
+    .html5-badge {
+      width: 90px; height: 90px;
+      background: linear-gradient(135deg, var(--html-orange), #f06529);
+      clip-path: polygon(50% 0%, 100% 15%, 90% 100%, 50% 87%, 10% 100%, 0% 15%);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 2rem;
+      position: relative; z-index: 1;
+      animation: float 3s ease-in-out infinite;
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: white;
+    }
+
+    @keyframes float {
+      0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-12px) }
+    }
+
+    .hero h1 {
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      position: relative; z-index: 1;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--text-muted);
+      margin-top: 1rem;
+      position: relative; z-index: 1;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .nav-pills {
+      display: flex; flex-wrap: wrap; gap: .6rem;
+      justify-content: center; margin-top: 2.5rem;
+      position: relative; z-index: 1;
+    }
+
+    .nav-pills a {
+      padding: .45rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: .85rem;
+      letter-spacing: .06em;
+      transition: all .25s;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .nav-pills a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(255,107,53,.08);
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 1100px; margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(255,107,53,.1);
+      border: 1px solid rgba(255,107,53,.3);
+      padding: .3rem .8rem;
+      border-radius: 4px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      transition: border-color .25s, transform .25s;
+    }
+
+    .card:hover {
+      border-color: rgba(255,107,53,.4);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      padding: .9rem 1.4rem;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      font-family: 'Space Mono', monospace;
+      font-size: .8rem;
+      color: var(--text-muted);
+      display: flex; align-items: center; gap: .5rem;
+    }
+
+    .card-header .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .card-body { padding: 1.4rem; }
+
+    /* ── CODE BLOCK ── */
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+      overflow-x: auto;
+      font-family: 'DM Mono', monospace;
+      font-size: .82rem;
+      line-height: 1.7;
+      color: #c9d1d9;
+    }
+
+    code { font-family: 'DM Mono', monospace; }
+
+    .tag { color: #79c0ff; }
+    .attr { color: #ffab70; }
+    .val { color: #a5d6ff; }
+    .comment { color: #8b949e; font-style: italic; }
+    .string { color: #a5d6ff; }
+
+    /* ── OUTPUT BOX ── */
+    .output-box {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 1.4rem;
+      color: #111;
+      margin-top: 1rem;
+    }
+
+    .output-label {
+      font-family: 'Space Mono', monospace;
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: .8rem;
+      display: flex; align-items: center; gap: .4rem;
+    }
+
+    .output-label::before {
+      content: '🖥️';
+    }
+
+    /* ── GRID ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    @media(max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── BADGE ── */
+    .topic-badge {
+      display: inline-block;
+      padding: .25rem .7rem;
+      border-radius: 6px;
+      font-size: .72rem;
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
+      letter-spacing: .05em;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge-structure { background: rgba(78,205,196,.15); color: var(--accent2); border: 1px solid rgba(78,205,196,.3); }
+    .badge-text { background: rgba(255,230,109,.15); color: var(--accent3); border: 1px solid rgba(255,230,109,.3); }
+    .badge-links { background: rgba(255,107,53,.15); color: var(--accent); border: 1px solid rgba(255,107,53,.3); }
+    .badge-lists { background: rgba(200,150,255,.15); color: #c897ff; border: 1px solid rgba(200,150,255,.3); }
+    .badge-tables { background: rgba(150,220,100,.15); color: #96dc64; border: 1px solid rgba(150,220,100,.3); }
+    .badge-forms { background: rgba(255,150,200,.15); color: #ff96c8; border: 1px solid rgba(255,150,200,.3); }
+    .badge-media { background: rgba(100,180,255,.15); color: #64b4ff; border: 1px solid rgba(100,180,255,.3); }
+    .badge-semantic { background: rgba(255,200,100,.15); color: #ffc864; border: 1px solid rgba(255,200,100,.3); }
+
+    /* ── OUTPUT HTML styles ── */
+    .output-box h1 { font-size: 2em; }
+    .output-box h2 { font-size: 1.6em; }
+    .output-box h3 { font-size: 1.3em; }
+    .output-box h4 { font-size: 1.1em; }
+    .output-box h5 { font-size: .9em; }
+    .output-box h6 { font-size: .8em; }
+    .output-box mark { background: yellow; }
+    .output-box del { text-decoration: line-through; }
+    .output-box ins { text-decoration: underline; }
+    .output-box code { background: #eee; padding: 1px 4px; border-radius: 3px; font-size: .85em; }
+    .output-box table { border-collapse: collapse; width: 100%; }
+    .output-box th, .output-box td { border: 1px solid #ccc; padding: .5rem .8rem; }
+    .output-box th { background: #f0f0f0; font-weight: bold; }
+    .output-box ul, .output-box ol { margin-left: 1.4rem; }
+    .output-box dl dt { font-weight: bold; }
+    .output-box dl dd { margin-left: 1.2rem; color: #555; }
+    .output-box a { color: #0000ee; }
+    .output-box input, .output-box select, .output-box textarea, .output-box button {
+      font-size: .9rem; margin: 4px 0; display: block;
+    }
+    .output-box button { cursor: pointer; padding: .3rem .8rem; }
+    .output-box figure { display: inline-block; }
+    .output-box figcaption { font-size: .8em; color: #555; text-align: center; }
+    .output-box header, .output-box nav, .output-box main, .output-box article,
+    .output-box section, .output-box aside, .output-box footer {
+      display: block; border: 1px dashed #bbb; padding: .4rem .6rem; margin: .3rem 0;
+      border-radius: 4px;
+    }
+    .output-box header { background: #e8f4ff; }
+    .output-box nav { background: #fff0e8; }
+    .output-box main { background: #f0fff0; }
+    .output-box article { background: #fff8e8; }
+    .output-box section { background: #f8f0ff; }
+    .output-box aside { background: #f0f8ff; }
+    .output-box footer { background: #f5f5f5; }
+    .output-box .sem-label {
+      font-size: .65rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: #888; margin-bottom: .1rem;
+    }
+
+    /* ── SCROLL reveal ── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── ATTRIBUTES TABLE ── */
+    .attr-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    .attr-table th { background: var(--surface2); color: var(--text-muted); font-family: 'Space Mono', monospace; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; padding: .6rem 1rem; text-align: left; }
+    .attr-table td { padding: .55rem 1rem; border-top: 1px solid var(--border); vertical-align: top; }
+    .attr-table td:first-child { font-family: 'DM Mono', monospace; color: var(--accent2); }
+    .attr-table td:nth-child(2) { color: var(--text-muted); font-size: .8rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 3rem 2rem;
+      color: var(--text-muted); font-size: .85rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Space Mono', monospace;
+    }
+    footer span { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+<section class="hero">
+  <div class="html5-badge">5</div>
+  <h1>HTML</h1>
+  <p class="hero-sub">Complete Guide · All Tags · Syntax · Examples · Output</p>
+  <nav class="nav-pills">
+    <a href="#structure">Structure</a>
+    <a href="#text">Text</a>
+    <a href="#links">Links</a>
+    <a href="#lists">Lists</a>
+    <a href="#tables">Tables</a>
+    <a href="#forms">Forms</a>
+    <a href="#media">Media</a>
+    <a href="#semantic">Semantic</a>
+    <a href="#attributes">Attributes</a>
+    <a href="#containers">Containers</a>
+    <a href="#head">Head / Meta</a>
+  </nav>
+
+  <div class="presented-by" style="
+    margin-top: 2.5rem;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  ">
+    <p style="
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    ">✦ Presented By ✦</p>
+    <div style="
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+    ">
+      <span style="
+        padding: 0.4rem 1rem;
+        background: linear-gradient(135deg, rgba(255,107,53,0.12), rgba(78,205,196,0.12));
+        border: 1px solid rgba(255,107,53,0.35);
+        border-radius: 999px;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.78rem;
+        color: var(--accent);
+        letter-spacing: 0.04em;
+      ">Vivek Yadav <span style="opacity:0.6; font-size:0.7rem">(24MTS5750)</span></span>
+      <span style="
+        padding: 0.4rem 1rem;
+        background: linear-gradient(135deg, rgba(78,205,196,0.12), rgba(255,230,109,0.12));
+        border: 1px solid rgba(78,205,196,0.35);
+        border-radius: 999px;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.78rem;
+        color: var(--accent2);
+        letter-spacing: 0.04em;
+      ">Sachit <span style="opacity:0.6; font-size:0.7rem">(24MTS5738)</span></span>
+      <span style="
+        padding: 0.4rem 1rem;
+        background: linear-gradient(135deg, rgba(255,230,109,0.12), rgba(255,107,53,0.12));
+        border: 1px solid rgba(255,230,109,0.35);
+        border-radius: 999px;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.78rem;
+        color: var(--accent3);
+        letter-spacing: 0.04em;
+      ">Suraj <span style="opacity:0.6; font-size:0.7rem">(24MTS5744)</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     1. STRUCTURE
+═══════════════════════════════════════ -->
+<div id="structure" class="section reveal">
+  <div class="section-header">
+    <span class="section-tag">01</span>
+    <h2 class="section-title">Document Structure</h2>
+  </div>
+  <span class="topic-badge badge-structure">STRUCTURE</span>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+      &nbsp;HTML Boilerplate
+    </div>
+    <div class="card-body">
+      <pre><span class="comment">&lt;!-- Every HTML document starts with this --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang=</span><span class="val">"en"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset=</span><span class="val">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="val">"viewport"</span> <span class="attr">content=</span><span class="val">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span>My Page<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;/head&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Hello World!<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span>Welcome to HTML.<span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+      <div class="output-label">Output</div>
+      <div class="output-box">
+        <small style="color:#888;">Browser Tab: <strong>My Page</strong></small>
+        <h1>Hello World!</h1>
+        <p>Welcome to HTML.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+     2. TEXT
+═══════════════════════════════════════ -->
+<div id="text" class="section reveal">
+  <div class="section-header">
+    <span class="section-tag">02</span>
+    <h2 class="section-title">Text Elements</h2>
+  </div>
+  <span class="topic-badge badge-text">TEXT</span>
+
+  <div class="two-col">
+    <!-- Headings -->
+    <div class="card">
+      <div class="card-header">
+        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+        &nbsp;Heading Tags — &lt;h1&gt; to &lt;h6&gt;
+      </div>
+      <div class="card-body">
+        <pre><span class="tag">&lt;h1&gt;</span>Heading Level 1<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span>Heading Level 2<span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;h3&gt;</span>Heading Level 3<span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;h4&gt;</span>Heading Level 4<span class="tag">&lt;/h4&gt;</span>
+<span class="tag">&lt;h5&gt;</span>Heading Level 5<span class="tag">&lt;/h5&gt;</span>
+<span class="tag">&lt;h6&gt;</span>Heading Level 6<span class="tag">&lt;/h6&gt;</span></pre>
+        <div class="output-label">Output</div>
+        <div class="output-box">
+          <h1>Heading Level 1</h1>
+          <h2>Heading Level 2</h2>
+          <h3>Heading Level 3</h3>
+          <h4>Heading Level 4</h4>
+          <h5>Heading Level 5</h5>
+          <h6>Heading Level 6</h6>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inline text -->
+    <div class="card">
+      <div class="card-header">
+        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+        &nbsp;Inline Text Formatting
+      </div>
+      <div class="card-body">
+        <pre><span class="tag">&lt;p&gt;</span>Normal paragraph text.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;b&gt;</span>Bold<span class="tag">&lt;/b&gt;</span> and <span class="tag">&lt;i&gt;</span>italic<span class="tag">&lt;/i&gt;</span>
+<span class="tag">&lt;strong&gt;</span>Strong (important)<span class="tag">&lt;/strong&gt;</span>
+<span class="tag">&lt;em&gt;</span>Emphasized text<span class="tag">&lt;/em&gt;</span>
+<span class="tag">&lt;u&gt;</span>Underlined text<span class="tag">&lt;/u&gt;</span>
+<span class="tag">&lt;mark&gt;</span>Highlighted text<span class="tag">&lt;/mark&gt;</span>
+<span class="tag">&lt;del&gt;</span>Deleted text<span class="tag">&lt;/del&gt;</span>
+<span class="tag">&lt;ins&gt;</span>Inserted text<span class="tag">&lt;/ins&gt;</span>
+H<span class="tag">&lt;sub&gt;</span>2<span class="tag">&lt;/sub&gt;</span>O and E=mc<span class="tag">&lt;sup&gt;</span>2<span class="tag">&lt;/sup&gt;</span>
+<span class="tag">&lt;small&gt;</span>Small print<span class="tag">&lt;/small&gt;</span>
+<span class="tag">&lt;code&gt;</span>inline code<span class="tag">&lt;/code&gt;</span></pre>
+        <div class="output-label">Output</div>
+        <div class="output-box" style="font-size:.9rem; line-height:2">
+          <p>Normal paragraph text.</p>
+          <p><b>Bold</b> and <i>italic</i></p>
+          <p><strong>Strong (important)</strong></p>
+          <p><em>Emphasized text</em></p>
+          <p><u>Underlined text</u></p>
+          <p><mark>Highlighted text</mark></p>
+          <p><del>Deleted text</del></p>
+          <p><ins>Inserted text</ins></p>
+          <p>H<sub>2</sub>O and E=mc<sup>2</sup></p>
+          <p><small>Small print text</small></p>
+          <p><code>inline code</code></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blockquote & pre -->
+  <div class="card">
+    <div class="card-header">
+      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+      &nbsp;Blockquote, Pre, Abbr, Address
+    </div>
+    <div class="card-body">
+      <pre><span class="tag">&lt;blockquote</span> <span class="attr">cite=</span><span class="val">"https://example.com"</span><span class="tag">&gt;</span>
+  To be or not to be, that is the question.
+<span class="tag">&lt;/blockquote&gt;</span>
+
+<span class="tag">&lt;pre&gt;</span>
+  Preserved
+    whitespace
+<span class="tag">&lt;/pre&gt;</span>
+
+<span class="tag">&lt;abbr</span> <span class="attr">title=</span><span class="val">"HyperText Markup Language"</span><span class="tag">&gt;</span>HTML<span class="tag">&lt;/abbr&gt;</span>
+
+<span class="tag">&lt;address&gt;</span>
+  Written by John Doe.<br>
+  Visit us at: example.com
+<span class="tag">&lt;/address&gt;</span></pre>
+      <div class="output-label">Output</div>
+      <div class="output-box">
+        <blockquote style="border-left:4px solid #ccc; padding-left:1rem; color:#555; margin:.5rem 0">
+          To be or not to be, that is the question.
+        </blockquote>
+        <pre style="background:#f5f5f5; padding:.5rem; border-radius:4px; font-size:.85rem; margin:.5rem 0">  Preserved
+    whitespace</pre>
+        <p><abbr title="HyperText Markup Language" style="text-decoration:underline dotted; cursor:help">HTML</abbr> ← hover for tooltip</p>
+        <address style="font-style:italic; color:#555; margin-top:.4rem">Written by John Doe.<br>Visit us at: example.com</address>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+     3. LINKS
+═══════════════════════════════════════ -->
+<div id="links" class="section reveal">
+  <div class="section-header">
+    <span class="section-tag">03</span>
+    <h2 class="section-title">Links</h2>
+  </div>
+  <span class="topic-badge badge-links">LINKS</span>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+      &nbsp;Anchor Tag — &lt;a&gt;
+    </div>
+    <div class="card-body">
+      <pre><span class="comment">&lt;!-- External link --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"https://google.com"</span><span class="tag">&gt;</span>Visit Google<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Open in new tab --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"https://github.com"</span> <span class="attr">target=</span><span class="val">"_blank"</span> <span class="attr">rel=</span><span class="val">"noopener"</span><span class="tag">&gt;</span>GitHub<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Email link --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"mailto:vy91828@gmail.com"</span><span class="tag">&gt;</span>Send Email<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Phone link --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"tel:+1234567890"</span><span class="tag">&gt;</span>Call Us<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Jump to section (anchor) --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#section1"</span><span class="tag">&gt;</span>Go to Section 1<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">id=</span><span class="val">"section1"</span><span class="tag">&gt;</span>...target...<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- Download link --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"file.pdf"</span> <span class="attr">download</span><span class="tag">&gt;</span>Download PDF<span class="tag">&lt;/a&gt;</span></pre>
+      <div class="output-label">Output</div>
+      <div class="output-box" style="display:flex; flex-wrap:wrap; gap:.8rem; align-items:center">
+        <a href="https://google.com" target="_blank">Visit Google</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:hello@example.com">Send Email</a>
+        <a href="tel:+1234567890">Call Us</a>
+        <a href="#structure">Go to Section 1</a>
+        <a href="#" download>Download PDF</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+     4. LISTS
+═══════════════════════════════════════ -->
+<div id="lists" class="section reveal">
+  <div class="section-header">
+    <span class="section-tag">04</span>
+    <h2 class="section-title">Lists</h2>
+  </div>
+  <span class="topic-badge badge-lists">LISTS</span>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+      &nbsp;List Tags — &lt;ul&gt;, &lt;ol&gt;, &lt;dl&gt;
+    </div>
+    <div class="card-body">
+      <div class="two-col">
+        <div>
+          <pre><span class="comment">&lt;!-- Unordered --&gt;</span>
+<span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Apples<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Bananas<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Cherries<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span>
+
+<span class="comment">&lt;!-- Ordered --&gt;</span>
+<span class="tag">&lt;ol&gt;</span>
+  <span class="tag">&lt;li&gt;</span>First step<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Second step<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Third step<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ol&gt;</span>
+
+<span class="comment">&lt;!-- Definition --&gt;</span>
+<span class="tag">&lt;dl&gt;</span>
+  <span class="tag">&lt;dt&gt;</span>HTML<span class="tag">&lt;/dt&gt;</span>
+  <span class="tag">&lt;dd&gt;</span>HyperText Markup Language<span class="tag">&lt;/dd&gt;</span>
+  <span class="tag">&lt;dt&gt;</span>CSS<span class="tag">&lt;/dt&gt;</span>
+  <span class="tag">&lt;dd&gt;</span>Cascading Style Sheets<span class="tag">&lt;/dd&gt;</span>
+<span class="tag">&lt;/dl&gt;</span></pre>
+        </div>
+        <div>
+          <div class="output-label">Output</div>
+          <div class="output-box" style="display:flex; gap:2rem; flex-wrap:wrap">
+            <div>
+              <strong>Unordered:</strong>
+              <ul><li>Apples</li><li>Bananas</li><li>Cherries</li></ul>
+            </div>
+            <div>
+              <strong>Ordered:</strong>
+              <ol><li>First step</li><li>Second step</li><li>Third step</li></ol>
+            </div>
+            <div>
+              <strong>Definition:</strong>
+              <dl>
+                <dt>HTML</dt><dd>HyperText Markup Language</dd>
+                <dt>CSS</dt><dd>Cascading Style Sheets</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+     5. TABLES
+═══════════════════════════════════════ -->
+<div id="tables" class="section reveal">
+  <div class="section-header">
+    <span class="section-tag">05</span>
+    <h2 class="section-title">Tables</h2>
+  </div>
+  <span class="topic-badge badge-tables">TABLES</span>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+      &nbsp;Table Tags — &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;
+    </div>
+    <div class="card-body">
+      <pre><span class="tag">&lt;table</span> <span class="attr">border=</span><span class="val">"1"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;caption&gt;</span>Student Grades<span class="tag">&lt;/caption&gt;</span>
+  <span class="tag">&lt;thead&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;th&gt;</span>Name<span class="tag">&lt;/th&gt;</span>
+      <span class="tag">&lt;th&gt;</span>Subject<span class="tag">&lt;/th&gt;</span>
+      <span class="tag">&lt;th&gt;</span>Grade<span class="tag">&lt;/th&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;/thead&gt;</span>
+  <span class="tag">&lt;tbody&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;td&gt;</span>Alice<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>Math<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>A<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;td&gt;</span>Bob<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>Science<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>B+<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;/tbody&gt;</span>
+  <span class="tag">&lt;tfoot&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;td</span> <span class="attr">colspan=</span><span class="val">"3"</span><span class="tag">&gt;</span>End of Report<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;/tfoot&gt;</span>
+<span class="tag">&lt;/table&gt;</span></pre>
+      <div class="output-label">Output</div>
+      <div class="output-box">
+        <table>
+          <caption style="font-weight:bold; margin-bottom:.4rem">Student Grades</caption>
+          <thead><tr><th>Name</th><th>Subject</th><th>Grade</th></tr></thead>
+          <tbody>
+            <tr><td>Alice</td><td>Math</td><td>A</td></tr>
+            <tr><td>Bob</td><td>Science</td><td>B+</td></tr>
+          </tbody>
+          <tfoot><tr><td colspan="3" style="color:#888; font-size:.85rem; text-align:center">End of Report</td></tr></tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+     6. FORMS
+═══════════════════════════════════════ -->
+<div id="forms" class="section reveal">
+  <div class="section-header">
+    <span class="section-tag">06</span>
+    <h2 class="section-title">Forms</h2>
+  </div>
+  <span class="topic-badge badge-forms">FORMS</span>
+
+  <div class="two-col">
+    <!-- Text inputs -->
+    <div class="card">
+      <div class="card-header">
+        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+        &nbsp;Basic Input Types
+      </div>
+      <div class="card-body">
+        <pre><span class="tag">&lt;form&gt;</span>
+  <span class="tag">&lt;label</span> <span class="attr">for=</span><span class="val">"name"</span><span class="tag">&gt;</span>Name:<span class="tag">&lt;/label&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type=</span><span class="val">"text"</span>
+    <span class="attr">id=</span><span class="val">"name"</span>
+    <span class="attr">placeholder=</span><span class="val">"Enter name"</span><span class="tag">&gt;</span>
+
+  <span class="tag">&lt;label</span> <span class="attr">for=</span><span class="val">"email"</span><span class="tag">&gt;</span>Email:<span class="tag">&lt;/label&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type=</span><span class="val">"email"</span>
+    <span class="attr">id=</span><span class="val">"email"</span>
+    <span class="attr">placeholder=</span><span class="val">"you@email.com"</span><span class="tag">&gt;</span>
+
+  <span class="tag">&lt;label</span> <span class="attr">for=</span><span class="val">"pass"</span><span class="tag">&gt;</span>Password:<span class="tag">&lt;/label&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type=</span><span class="val">"password"</span>
+    <span class="attr">id=</span><span class="val">"pass"</span><span class="tag">&gt;</span>
+
+  <span class="tag">&lt;input</span> <span class="attr">type=</span><span class="val">"number"</span>
+    <span class="attr">placeholder=</span><span class="val">"Age"</span> <span class="attr">min=</span><span class="val">"0"</span> <span class="attr">max=</span><span class="val">"120"</span><span class="tag">&gt;</span>
+
+  <span class="tag">&lt;input</span> <span class="attr">type=</span><span class="val">"date"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type=</span><span class="val">"color"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type=</span><span class="val">"range"</span> <span class="attr">min=</span><span class="val">"0"</span> <span class="attr">max=</span><span class="val">"100"</span><span class="tag">&gt;</span>
+
+  <span class="tag">&lt;textarea</span> <span class="attr">rows=</span><span class="val">"3"</span>
+    <span class="attr">placeholder=</span><span class="val">"Your message..."</span><span class="tag">&gt;&lt;/textarea&gt;</span>
+
+  <span class="tag">&lt;button</span> <span class="attr">type=</span><span class="val">"submit"</span><span class="tag">&gt;</span>Submit<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/form&gt;</span></pre>
+        <div class="output-label">Output</div>
+        <div class="output-box">
+          <label for="name">Name:</label>
+          <input type="text" id="name" placeholder="Enter name" style="padding:.3rem .6rem; border:1px solid #ccc; border-radius:4px; width:100%; margin-bottom:.4rem">
+          <label for="email">Email:</label>
+          <input type="email" id="email" placeholder="you@email.com" style="padding:.3rem .6rem; border:1px solid #ccc; border-radius:4px; width:100%; margin-bottom:.4rem">
+          <label for="pass">Password:</label>
+          <input type="password" id="pass" placeholder="••••••" style="padding:.3rem .6rem; border:1px solid #ccc; border-radius:4px; width:100%; margin-bottom:.4rem">
+          <input type="number" placeholder="Age" min="0" max="120" style="padding:.3rem .6rem; border:1px solid #ccc; border-radius:4px; width:100%; margin-bottom:.4rem">
+          <input type="date" style="padding:.3rem .6rem; border:1px solid #ccc; border-radius:4px; margin-bottom:.4rem">
+          <input type="color" style="margin-bottom:.4rem; display:inline-block">
+          <input type="range" min="0" max="100" style="display:block; width:100%; margin-bottom:.4rem">
+          <textarea rows="2" placeholder="Your message..." style="padding:.3rem .6rem; border:1px solid #ccc; border-radius:4px; width:100%; margin-bottom:.4rem"></textarea>
+          <button type="button" style="padding:.4rem 1rem; background:#0070f3; color:#fff; border:none; border-radius:4px; cursor:pointer">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Radio, checkbox, select -->
+    <div class="card">
+      <div class="card-header">
+        <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+        &nbsp;Radio, Checkbox, Select
+      </div>
+      <div class="card-body">
+        <pre><span class="comment">&lt;!-- Radio buttons --&gt;</span>
+<span class="tag">&lt;p&gt;</span>Gender:<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type=</span><span class="val">"radio"</span>
+  <span class="attr">name=</span><span class="val">"gender"</span> <span class="attr">value=</span><span class="val">"male"</span><span class="tag">&gt;</span> Male
+<span class="tag">&lt;input</span> <span class="attr">type=</span><span class="val">"radio"</span>
+  <span class="attr">name=</span><span class="val">"gender"</span> <span class="attr">value=</span><span class="val">"female"</span><span class="tag">&gt;</span> Female
+
+<span class="comment">&lt;!-- Checkboxes --&gt;</span>
+<span class="tag">&lt;p&gt;</span>Skills:<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type=</span><span class="val">"checkbox"</span>
+  <span class="attr">checked</span><span class="tag">&gt;</span> HTML
+<span class="tag">&lt;input</span> <span class="attr">type=</span><span class="val">"checkbox"</span><span class="tag">&gt;</span> CSS
+<span class="tag">&lt;input</span> <span class="attr">type=</span><span class="val">"checkbox"</span><span class="tag">&gt;</span> JS
+
+<span class="comment">&lt;!-- Dropdown --&gt;</span>
+<span class="tag">&lt;select&gt;</span>
+  <span class="tag">&lt;option</span> <span class="attr">value=</span><span class="val">""</span><span class="tag">&gt;</span>Pick a country<span class="tag">&lt;/option&gt;</span>
+  <span class="tag">&lt;optgroup</span> <span class="attr">label=</span><span class="val">"Asia"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;option&gt;</span>India<span class="tag">&lt;/option&gt;</span>
+    <span class="tag">&lt;option&gt;</span>Japan<span class="tag">&lt;/option&gt;</span>
+  <span class="tag">&lt;/optgroup&gt;</span>
+<span class="tag">&lt;/select&gt;</span>
+
+<span class="comment">&lt;!-- File upload --&gt;</span>
+<span class="tag">&lt;input</span> <span class="attr">type=</span><span class="val">"file"</span> <span class="attr">accept=</span><span class="val">".jpg,.png"</span><span class="tag">&gt;</span></pre>
+        <div class="output-label">Output</div>
+        <div class="output-box" style="font-size:.9rem; line-height:2">
+          <p><strong>Gender:</strong></p>
+          <label><input type="radio" name="gender" value="male"> Male</label>&nbsp;
+          <label><input type="radio" name="gender" value="female"> Female</label>
+          <p style="margin-top:.5rem"><strong>Skills:</strong></p>
+          <label><input type="checkbox" checked> HTML</label>&nbsp;
+          <label><input type="checkbox"> CSS</label>&nbsp;
+          <label><input type="checkbox"> JS</label>
+          <p style="margin-top:.5rem"><strong>Country:</strong></p>
+          <select style="padding:.3rem .6rem; border:1px solid #ccc; border-radius:4px">
+            <option value="">Pick a country</option>
+            <optgroup label="Asia">
+              <option>India</option>
+              <option>Japan</option>
+            </optgroup>
+          </select>
+          <p style="margin-top:.5rem"><strong>File:</strong></p>
+          <input type="file" accept=".jpg,.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+     7. MEDIA
+═══════════════════════════════════════ -->
+<div id="media" class="section reveal">
+  <div class="section-header">
+    <span class="section-tag">07</span>
+    <h2 class="section-title">Media</h2>
+  </div>
+  <span class="topic-badge badge-media">MEDIA</span>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+      &nbsp;Image Tag — &lt;img&gt;
+    </div>
+    <div class="card-body">
+      <pre><span class="comment">&lt;!-- Basic image --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"photo.jpg"</span> <span class="attr">alt=</span><span class="val">"A sunset"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- With size --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"logo.png"</span> <span class="attr">alt=</span><span class="val">"Logo"</span>
+  <span class="attr">width=</span><span class="val">"200"</span> <span class="attr">height=</span><span class="val">"100"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Responsive --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"banner.jpg"</span> <span class="attr">alt=</span><span class="val">"Banner"</span>
+  <span class="attr">style=</span><span class="val">"width:100%"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Figure with caption --&gt;</span>
+<span class="tag">&lt;figure&gt;</span>
+  <span class="tag">&lt;img</span> <span class="attr">src=</span><span class="val">"chart.png"</span> <span class="attr">alt=</span><span class="val">"Chart"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;figcaption&gt;</span>Fig. 1: Data Chart<span class="tag">&lt;/figcaption&gt;</span>
+<span class="tag">&lt;/figure&gt;</span></pre>
+      <div class="output-label">Output (using HTML5 logo as sample image)</div>
+      <div class="output-box" style="display:flex; gap:1.5rem; flex-wrap:wrap; align-items:flex-start">
+        <div>
+          <p style="font-size:.8rem; color:#888; margin-bottom:.3rem">Basic:</p>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/120px-HTML5_logo_and_wordmark.svg.png" alt="HTML5 Logo" width="60">
+        </div>
+        <div>
+          <p style="font-size:.8rem; color:#888; margin-bottom:.3rem">Responsive (100% width of container):</p>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/120px-HTML5_logo_and_wordmark.svg.png" alt="Banner" style="width:100%; max-width:150px">
+        </div>
+        <figure>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/120px-HTML5_logo_and_wordmark.svg.png" alt="Chart" width="60">
+          <figcaption>Fig. 1: HTML5 Logo</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video & Audio -->
+  <div class="card">
+    <div class="card-header">
+      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+      &nbsp;Video, Audio &amp; iFrame
+    </div>
+    <div class="card-body">
+      <pre><span class="comment">&lt;!-- Video --&gt;</span>
+<span class="tag">&lt;video</span> <span class="attr">src=</span><span class="val">"movie.mp4"</span>
+  <span class="attr">controls</span> <span class="attr">width=</span><span class="val">"400"</span><span class="tag">&gt;</span>
+  Your browser does not support video.
+<span class="tag">&lt;/video&gt;</span>
+
+<span class="comment">&lt;!-- Video with multiple sources --&gt;</span>
+<span class="tag">&lt;video</span> <span class="attr">controls</span> <span class="attr">autoplay</span> <span class="attr">muted</span> <span class="attr">loop</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src=</span><span class="val">"movie.mp4"</span> <span class="attr">type=</span><span class="val">"video/mp4"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src=</span><span class="val">"movie.webm"</span> <span class="attr">type=</span><span class="val">"video/webm"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/video&gt;</span>
+
+<span class="comment">&lt;!-- Audio --&gt;</span>
+<span class="tag">&lt;audio</span> <span class="attr">src=</span><span class="val">"song.mp3"</span> <span class="attr">controls</span><span class="tag">&gt;&lt;/audio&gt;</span>
+
+<span class="comment">&lt;!-- iFrame (embed webpage) --&gt;</span>
+<span class="tag">&lt;iframe</span>
+  <span class="attr">src=</span><span class="val">"https://example.com"</span>
+  <span class="attr">width=</span><span class="val">"600"</span> <span class="attr">height=</span><span class="val">"400"</span>
+  <span class="attr">frameborder=</span><span class="val">"0"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/iframe&gt;</span></pre>
+      <div class="output-label">Output</div>
+      <div class="output-box" style="display:flex; flex-direction:column; gap:.8rem">
+        <div>
+          <p style="font-size:.8rem; color:#888; margin-bottom:.3rem">Video player:</p>
+          <video src="movie.mp4" controls style="width:300px; border:1px solid #ddd; border-radius:6px"></video>
+        </div>
+        <div>
+          <p style="font-size:.8rem; color:#888; margin-bottom:.3rem">Audio player:</p>
+          <audio src="song.mp3" controls></audio>
+        </div>
+        <div>
+          <p style="font-size:.8rem; color:#888; margin-bottom:.3rem">iFrame:</p>
+          <iframe width="300" height="80" style="border:1px solid #ddd; border-radius:6px" src="https://www.youtube.com/embed/I0_951_MPE0?si=C6cjF9a5qHMZq5JK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+     8. SEMANTIC HTML5
+═══════════════════════════════════════ -->
+<div id="semantic" class="section reveal">
+  <div class="section-header">
+    <span class="section-tag">08</span>
+    <h2 class="section-title">Semantic HTML5</h2>
+  </div>
+  <span class="topic-badge badge-semantic">SEMANTIC</span>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+      &nbsp;Semantic Layout Elements
+    </div>
+    <div class="card-body">
+      <pre><span class="tag">&lt;header&gt;</span>
+  <span class="tag">&lt;h1&gt;</span>Site Title<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;/header&gt;</span>
+
+<span class="tag">&lt;nav&gt;</span>
+  <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"/"</span><span class="tag">&gt;</span>Home<span class="tag">&lt;/a&gt;</span>
+  <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"/about"</span><span class="tag">&gt;</span>About<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/nav&gt;</span>
+
+<span class="tag">&lt;main&gt;</span>
+  <span class="tag">&lt;article&gt;</span>
+    <span class="tag">&lt;h2&gt;</span>Blog Post Title<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;section&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Section content here.<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/section&gt;</span>
+  <span class="tag">&lt;/article&gt;</span>
+  <span class="tag">&lt;aside&gt;</span>Related links<span class="tag">&lt;/aside&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+
+<span class="tag">&lt;footer&gt;</span>
+  <span class="tag">&lt;p&gt;</span>&amp;copy; 2024 My Site<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/footer&gt;</span></pre>
+      <div class="output-label">Output (visual representation)</div>
+      <div class="output-box">
+        <header><div class="sem-label">HEADER</div><strong>Site Title</strong></header>
+        <nav><div class="sem-label">NAV</div><a href="#">Home</a> · <a href="#">About</a></nav>
+        <main>
+          <div class="sem-label">MAIN</div>
+          <article>
+            <div class="sem-label">ARTICLE</div>
+            <h4>Blog Post Title</h4>
+            <section><div class="sem-label">SECTION</div><p>Section content here.</p></section>
+          </article>
+          <aside><div class="sem-label">ASIDE</div>Related links</aside>
+        </main>
+        <footer><div class="sem-label">FOOTER</div><p>© 2024 My Site</p></footer>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+     9. ATTRIBUTES
+═══════════════════════════════════════ -->
+<div id="attributes" class="section reveal">
+  <div class="section-header">
+    <span class="section-tag">09</span>
+    <h2 class="section-title">Global Attributes</h2>
+  </div>
+  <span class="topic-badge badge-structure">ATTRIBUTES</span>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+      &nbsp;Common HTML Attributes
+    </div>
+    <div class="card-body">
+      <pre><span class="comment">&lt;!-- id: unique identifier --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">id=</span><span class="val">"main-header"</span><span class="tag">&gt;</span>Header<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- class: group multiple elements --&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">class=</span><span class="val">"highlight big"</span><span class="tag">&gt;</span>Text<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- style: inline CSS --&gt;</span>
+<span class="tag">&lt;h1</span> <span class="attr">style=</span><span class="val">"color: blue;"</span><span class="tag">&gt;</span>Title<span class="tag">&lt;/h1&gt;</span>
+
+<span class="comment">&lt;!-- title: tooltip on hover --&gt;</span>
+<span class="tag">&lt;abbr</span> <span class="attr">title=</span><span class="val">"HyperText Markup Language"</span><span class="tag">&gt;</span>HTML<span class="tag">&lt;/abbr&gt;</span>
+
+<span class="comment">&lt;!-- data-*: custom data attributes --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">data-user-id=</span><span class="val">"42"</span><span class="tag">&gt;</span>User<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- hidden: hides element --&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">hidden</span><span class="tag">&gt;</span>Not visible<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- tabindex: keyboard nav order --&gt;</span>
+<span class="tag">&lt;button</span> <span class="attr">tabindex=</span><span class="val">"1"</span><span class="tag">&gt;</span>First<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;button</span> <span class="attr">tabindex=</span><span class="val">"2"</span><span class="tag">&gt;</span>Second<span class="tag">&lt;/button&gt;</span>
+
+<span class="comment">&lt;!-- contenteditable --&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">contenteditable=</span><span class="val">"true"</span><span class="tag">&gt;</span>Click to edit<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- draggable --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">draggable=</span><span class="val">"true"</span><span class="tag">&gt;</span>Drag me<span class="tag">&lt;/div&gt;</span></pre>
+
+      <div style="margin-top:1.2rem">
+        <table class="attr-table">
+          <thead><tr><th>Attribute</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>id</td><td>Unique identifier; used for CSS, JS, anchor links</td></tr>
+            <tr><td>class</td><td>Groups elements; multiple classes space-separated</td></tr>
+            <tr><td>style</td><td>Inline CSS styles (avoid for large projects)</td></tr>
+            <tr><td>title</td><td>Tooltip shown on hover</td></tr>
+            <tr><td>data-*</td><td>Custom data stored on element, accessible via JS</td></tr>
+            <tr><td>hidden</td><td>Boolean — hides element from display</td></tr>
+            <tr><td>tabindex</td><td>Controls keyboard focus/tab order</td></tr>
+            <tr><td>contenteditable</td><td>Makes element's content editable by user</td></tr>
+            <tr><td>draggable</td><td>Enables HTML5 drag & drop API</td></tr>
+            <tr><td>lang</td><td>Declares language (e.g. lang="en")</td></tr>
+            <tr><td>dir</td><td>Text direction: ltr or rtl</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="output-label" style="margin-top:1rem">Output</div>
+      <div class="output-box">
+        <div id="main-header" style="font-weight:bold; margin-bottom:.4rem">Header (id="main-header")</div>
+        <p class="highlight big" style="background:yellow; font-size:1.1rem; margin-bottom:.4rem">Text (class="highlight big")</p>
+        <h3 style="color:blue; margin-bottom:.4rem">Title (style="color:blue")</h3>
+        <p style="margin-bottom:.4rem"><abbr title="HyperText Markup Language" style="text-decoration:underline dotted; cursor:help">HTML</abbr> ← hover for tooltip</p>
+        <div data-user-id="42" style="background:#f0f0f0; padding:.3rem .5rem; border-radius:4px; margin-bottom:.4rem; font-family:monospace; font-size:.85rem">data-user-id="42"</div>
+        <p style="margin-bottom:.4rem"><button tabindex="1" style="padding:.3rem .8rem; margin-right:.4rem">First (tab 1)</button><button tabindex="2" style="padding:.3rem .8rem">Second (tab 2)</button></p>
+        <p contenteditable="true" style="border:1px dashed #888; padding:.3rem .5rem; border-radius:4px; background:#fffbe6">✏️ Click here to edit this text!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+     10. CONTAINERS
+═══════════════════════════════════════ -->
+<div id="containers" class="section reveal">
+  <div class="section-header">
+    <span class="section-tag">10</span>
+    <h2 class="section-title">Generic Containers</h2>
+  </div>
+  <span class="topic-badge badge-structure">CONTAINERS</span>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+      &nbsp;&lt;div&gt; vs &lt;span&gt;
+    </div>
+    <div class="card-body">
+      <pre><span class="comment">&lt;!-- div: block-level container --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">style=</span><span class="val">"background:#f0f0ff; padding:1rem;"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;h3&gt;</span>Card Title<span class="tag">&lt;/h3&gt;</span>
+  <span class="tag">&lt;p&gt;</span>Card content goes here.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- span: inline container --&gt;</span>
+<span class="tag">&lt;p&gt;</span>
+  This is <span class="tag">&lt;span</span> <span class="attr">style=</span><span class="val">"color:red"</span><span class="tag">&gt;</span>red text<span class="tag">&lt;/span&gt;</span>
+  inside a paragraph.
+<span class="tag">&lt;/p&gt;</span>
+
+<span class="comment">&lt;!-- Nesting divs for layout --&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"container"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"col"</span><span class="tag">&gt;</span>Column 1<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"col"</span><span class="tag">&gt;</span>Column 2<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span></pre>
+      <div class="output-label">Output</div>
+      <div class="output-box">
+        <div style="background:#f0f0ff; padding:1rem; border-radius:6px; margin-bottom:.6rem">
+          <h3>Card Title (div)</h3>
+          <p>Card content goes here.</p>
+        </div>
+        <p>This is <span style="color:red">red text</span> inside a paragraph (span).</p>
+        <div style="display:flex; gap:.5rem; margin-top:.6rem">
+          <div style="background:#e8f5e9; padding:.5rem 1rem; border-radius:4px; flex:1; text-align:center">Column 1 (div)</div>
+          <div style="background:#e3f2fd; padding:.5rem 1rem; border-radius:4px; flex:1; text-align:center">Column 2 (div)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════
+     11. HEAD / META
+═══════════════════════════════════════ -->
+<div id="head" class="section reveal">
+  <div class="section-header">
+    <span class="section-tag">11</span>
+    <h2 class="section-title">Head &amp; Meta Tags</h2>
+  </div>
+  <span class="topic-badge badge-media">HEAD</span>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+      &nbsp;&lt;meta&gt;, &lt;link&gt;, &lt;script&gt;
+    </div>
+    <div class="card-body">
+      <pre><span class="tag">&lt;head&gt;</span>
+  <span class="comment">&lt;!-- Character encoding --&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset=</span><span class="val">"UTF-8"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Responsive viewport --&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="val">"viewport"</span>
+    <span class="attr">content=</span><span class="val">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- SEO: page description --&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="val">"description"</span>
+    <span class="attr">content=</span><span class="val">"Learn HTML basics"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- SEO: keywords --&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="val">"keywords"</span>
+    <span class="attr">content=</span><span class="val">"HTML, web, tutorial"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Author --&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="val">"author"</span> <span class="attr">content=</span><span class="val">"Dev"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Open Graph (social sharing) --&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="val">"og:title"</span>
+    <span class="attr">content=</span><span class="val">"My Page"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="val">"og:image"</span>
+    <span class="attr">content=</span><span class="val">"thumbnail.jpg"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- External CSS --&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">rel=</span><span class="val">"stylesheet"</span> <span class="attr">href=</span><span class="val">"style.css"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Favicon --&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">rel=</span><span class="val">"icon"</span> <span class="attr">href=</span><span class="val">"favicon.ico"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- Google Fonts --&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">rel=</span><span class="val">"preconnect"</span>
+    <span class="attr">href=</span><span class="val">"https://fonts.googleapis.com"</span><span class="tag">&gt;</span>
+
+  <span class="comment">&lt;!-- JavaScript file --&gt;</span>
+  <span class="tag">&lt;script</span> <span class="attr">src=</span><span class="val">"app.js"</span> <span class="attr">defer</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;/head&gt;</span></pre>
+      <div style="margin-top:1.2rem">
+        <table class="attr-table">
+          <thead><tr><th>Tag / Attribute</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>charset="UTF-8"</td><td>Sets character encoding for international text</td></tr>
+            <tr><td>viewport</td><td>Makes page responsive on mobile devices</td></tr>
+            <tr><td>name="description"</td><td>SEO — shown in Google search results</td></tr>
+            <tr><td>name="keywords"</td><td>SEO keywords (less important now)</td></tr>
+            <tr><td>og:title / og:image</td><td>Controls preview when sharing on social media</td></tr>
+            <tr><td>link rel="stylesheet"</td><td>Links an external CSS file</td></tr>
+            <tr><td>link rel="icon"</td><td>Sets the browser tab favicon</td></tr>
+            <tr><td>script defer</td><td>Loads JS after HTML is parsed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer>
+  <p>HTML Complete Guide &nbsp;·&nbsp; <span>All Tags · Syntax · Examples · Output</span></p>
+  <p style="margin-top:.5rem; font-size:.75rem; opacity:.5">Built with ❤️ using pure HTML &amp; CSS</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
